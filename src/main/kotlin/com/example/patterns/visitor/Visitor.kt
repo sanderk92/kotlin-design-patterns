@@ -3,55 +3,55 @@ package com.example.patterns.visitor
 import java.util.*
 
 interface Dossier {
-    fun accept(visitor: Visitor)
+    fun accept(exporter: DossierExporter)
 }
 
 data class OpenDossier(
     val id: UUID,
 ): Dossier {
-    override fun accept(visitor: Visitor) {
-        visitor.visitOpen(this)
+    override fun accept(exporter: DossierExporter) {
+        exporter.exportOpen(this)
     }
 }
 
 data class ClosedDossier(
     val id: UUID,
 ): Dossier {
-    override fun accept(visitor: Visitor) {
-        visitor.visitClosed(this)
+    override fun accept(exporter: DossierExporter) {
+        exporter.exportClosed(this)
     }
 }
 
-interface Visitor {
+interface DossierExporter {
     fun export(vararg dossiers: Dossier)
-    fun visitOpen(dossier: Dossier)
-    fun visitClosed(dossier: Dossier)
+    fun exportOpen(dossier: Dossier)
+    fun exportClosed(dossier: Dossier)
 }
 
-class DossierXmlExporter: Visitor {
+class DossierXmlExporter: DossierExporter {
     override fun export(vararg dossiers: Dossier) {
         dossiers.forEach { it.accept(this) }
     }
 
-    override fun visitOpen(dossier: Dossier) {
+    override fun exportOpen(dossier: Dossier) {
         println("Visited XML exporter open dossier")
     }
 
-    override fun visitClosed(dossier: Dossier) {
+    override fun exportClosed(dossier: Dossier) {
         println("Visited XML exporter closed dossier")
     }
 }
 
-class DossierJsonExporter: Visitor {
+class DossierJsonExporter: DossierExporter {
     override fun export(vararg dossiers: Dossier) {
         dossiers.forEach { it.accept(this) }
     }
 
-    override fun visitOpen(dossier: Dossier) {
+    override fun exportOpen(dossier: Dossier) {
         println("Visited JSON exporter open dossier")
     }
 
-    override fun visitClosed(dossier: Dossier) {
+    override fun exportClosed(dossier: Dossier) {
         println("Visited JSON exporter closed dossier")
     }
 }

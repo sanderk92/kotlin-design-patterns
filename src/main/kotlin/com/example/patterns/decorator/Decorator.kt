@@ -12,9 +12,7 @@ data class CommonLawDossier(
     val user: String,
     val created: Instant,
 ) : Dossier {
-    override fun view() {
-        println(this)
-    }
+    override fun view() = println(this)
 }
 
 data class CivilLawDossier(
@@ -22,9 +20,7 @@ data class CivilLawDossier(
     val user: String,
     val created: Instant,
 ) : Dossier {
-    override fun view() {
-        println(this)
-    }
+    override fun view() = println(this)
 }
 
 interface DossierStateDecorator : Dossier {
@@ -35,18 +31,14 @@ data class OpenDossier(
     override val dossier: Dossier,
 ) : DossierStateDecorator {
     fun run() = RunningDossier(dossier)
-    override fun view() {
-        dossier.view()
-    }
+    override fun view() = dossier.view()
 }
 
 data class RunningDossier(
     override val dossier: Dossier,
 ) : DossierStateDecorator {
     fun succeed() = SuccessDossier(dossier)
-    override fun view() {
-        dossier.view()
-    }
+    override fun view() = dossier.view()
 }
 
 data class SuccessDossier(
@@ -54,16 +46,12 @@ data class SuccessDossier(
 ) : DossierStateDecorator {
     fun reopen() = OpenDossier(dossier)
     fun rerun() = RunningDossier(dossier)
-    override fun view() {
-        dossier.view()
-    }
+    override fun view() = dossier.view()
 }
 
 data class FailureDossier(
     override val dossier: Dossier,
     val message: String,
 ) : DossierStateDecorator {
-    override fun view() {
-        dossier.view()
-    }
+    override fun view() = dossier.view()
 }
