@@ -1,4 +1,4 @@
-package com.example.patterns.decorator
+package com.example.patterns.structural.decorator
 
 import java.time.Instant
 import java.util.*
