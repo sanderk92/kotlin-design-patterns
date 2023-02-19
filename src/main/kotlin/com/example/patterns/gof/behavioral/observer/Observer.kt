@@ -1,4 +1,4 @@
-package com.example.patterns.behavioral.observer
+package com.example.patterns.gof.behavioral.observer
 
 interface DossierProcessor {
     fun process()

@@ -1,4 +1,4 @@
-package com.example.patterns.creational.factory
+package com.example.patterns.gof.creational.factory
 
 interface Dossier
 class CommonLawDossier: Dossier

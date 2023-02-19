@@ -1,4 +1,4 @@
-package com.example.patterns.creational.singleton
+package com.example.patterns.gof.creational.singleton
 
 class Subject
 

@@ -1,4 +1,4 @@
-package com.example.patterns.structural.bridge
+package com.example.patterns.gof.structural.bridge
 
 interface Color {
     val string: String

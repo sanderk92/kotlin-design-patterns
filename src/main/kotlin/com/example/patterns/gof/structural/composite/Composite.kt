@@ -1,4 +1,4 @@
-package com.example.patterns.structural.composite
+package com.example.patterns.gof.structural.composite
 
 interface Node {
     fun build(): String

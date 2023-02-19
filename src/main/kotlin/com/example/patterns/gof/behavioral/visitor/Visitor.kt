@@ -1,4 +1,4 @@
-package com.example.patterns.behavioral.visitor
+package com.example.patterns.gof.behavioral.visitor
 
 import java.util.*
 
