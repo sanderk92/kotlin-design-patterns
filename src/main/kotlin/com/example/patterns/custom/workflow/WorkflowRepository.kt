@@ -1,4 +1,4 @@
-package com.example.patterns.behavioral.state
+package com.example.patterns.custom.workflow
 
 import java.time.Instant
 import java.util.*
@@ -109,7 +109,7 @@ fun main() {
     repo.store(open)
     repo.printAll()
 
-    val processing = open.assess(Instant.now())
+    val processing = open.process(Instant.now())
     repo.update(processing)
     repo.printAll()
 

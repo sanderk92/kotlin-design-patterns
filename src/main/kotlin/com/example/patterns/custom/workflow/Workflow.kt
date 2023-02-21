@@ -1,4 +1,4 @@
-package com.example.patterns.behavioral.state
+package com.example.patterns.custom.workflow
 
 import java.time.Instant
 import java.util.*
@@ -7,6 +7,7 @@ data class DossierId(val value: UUID)
 
 interface CaseContext
 data class CivilCase(val id: DossierId): CaseContext
+data class CommonCase(val id: DossierId): CaseContext
 
 data class CourtRuling (val message: String)
 
@@ -17,7 +18,7 @@ sealed interface Dossier<Case> {
 data class OpenDossier<Case: CaseContext>(
     override val case: Case,
 ) : Dossier<Case> {
-    fun assess(time: Instant) = ProcessingDossier(case, time)
+    fun process(time: Instant) = ProcessingDossier(case, time)
 }
 
 data class ProcessingDossier<Case: CaseContext>(
@@ -33,5 +34,5 @@ data class FinalizedDossier<Case: CaseContext>(
     val ruling: CourtRuling,
 ) : Dossier<Case> {
     fun reopen() = OpenDossier(case)
-    fun reassess(time: Instant) = ProcessingDossier(case, time)
+    fun reprocess(time: Instant) = ProcessingDossier(case, time)
 }
