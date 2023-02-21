@@ -1,4 +1,4 @@
-package com.example.patterns.gof.creational.chainofresponsibility
+package com.example.patterns.gof.behavioral.chainofresponsibility
 
 data class Request(
     val value: String,
